@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Question ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ffd6e7,#ffffff);
+    min-height:100vh;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+h1{
+    color:#ff4f9a;
+    margin-bottom:20px;
+    font-size:3rem;
+}
+
+.subtitle{
+    color:#555;
+    margin-bottom:30px;
+}
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.gallery img{
+    width:250px;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+    border:5px solid white;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+.options{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:50px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+.selected{
+    border:4px solid #ff69b4;
+}
+
+.buttons{
+    margin-top:30px;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#ff69b4;
+    color:white;
+}
+
+#yesBtn:hover{
+    transform:scale(1.05);
+}
+
+#noBtn{
+    background:#ddd;
+    margin-left:20px;
+}
+
+.result{
+    margin-top:40px;
+    font-size:2rem;
+    color:#ff1493;
+    font-weight:bold;
+}
+
+.heart{
+    position:fixed;
+    font-size:30px;
+    pointer-events:none;
+    animation:floatUp 4s linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1> Choices for a Queen❤️</h1>
+
+<p class="subtitle">
+Choose the date you'd enjoy the most 🌸
+</p>
+
+<video autoplay muted loop>
+    <source src="c:\Users\NEW USER\Videos\T\WhatsApp Video 2026-06-02 at 14.02.20.mp4" type="video/mp4">
+</video>
+
+<h2 style="margin-bottom:20px;">Pick Your Date ✨</h2>
+
+<div class="options">
+
+    <div class="card" onclick="selectDate(this,'Lunch Date 🍽️')">
+        <img src="c:\Users\NEW USER\Pictures\download (1).jfif">
+        <h3>Lunch Date 🍽️</h3>
+        <p>Great food and company.</p>
+    </div>
+
+    <div class="card" onclick="selectDate(this,'Private Cinema Date 🎬')">
+        <img src="c:\Users\NEW USER\Pictures\download.jfif">
+        <h3>Private Cinema Date 🎬</h3>
+        <p>Popcorn, snacks and a fun movie.</p>
+    </div>
+
+    <div class="card" onclick="selectDate(this,'Sip & Paint 🎨')">
+        <img src="c:\Users\NEW USER\Pictures\download (2).jfif">
+        <h3>Sip & Paint 🎨</h3>
+        <p>Creative and memorable.</p>
+    </div>
+    <div class="card" onclick="selectDate(this,'Bowling 🎳')">
+        <img src="c:\Users\NEW USER\Pictures\images.jfif">
+        <h3>Bowling 🎳</h3>
+        <p>Fun and competitive!</p>
+    </div>
+    <div class="card" onclick="selectDate(this,'Amusement Park Date  ')">
+        <img src="c:\Users\NEW USER\Pictures\images (1).jfif">
+        <h3>Amusement Park Date  </h3>
+        <p>Thrills and excitement!</p>
+    </div>
+
+</div>
+
+<div class="buttons">
+    <button id="yesBtn">YES ❤️</button>
+    <button id="noBtn">NO 😢</button>
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+let selectedDate = "";
+
+function selectDate(card,date){
+
+    document.querySelectorAll('.card')
+    .forEach(c => c.classList.remove('selected'));
+
+    card.classList.add('selected');
+    selectedDate = date;
+}
+
+const noBtn = document.getElementById("noBtn");
+
+let dodgeCount = 0;
+
+noBtn.addEventListener("mouseenter", () => {
+
+    if(dodgeCount < 8){
+
+        dodgeCount++;
+
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+document.getElementById("yesBtn").addEventListener("click", () => {
+
+    const result = document.getElementById("result");
+
+    if(selectedDate === ""){
+        result.innerHTML =
+        "Choose a date option first ❤️";
+        return;
+    }
+
+    result.innerHTML =
+    `🎉 YAY! It's a date!<br><br>
+    Your choice: <strong>${selectedDate}</strong> ❤️`;
+
+    createHearts();
+});
+
+function createHearts(){
+
+    for(let i=0;i<60;i++){
+
+        let heart = document.createElement("div");
+
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.bottom = "-20px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },4000);
+    }
+}
+
+</script>
+
+</body>
+</html>
